@@ -1,46 +1,56 @@
-# AOP-main
+This script does entity extraction pipeline
 
-This repository focuses on **entity extraction** and **biological plausibility evaluation** from scientific articles related to Adverse Outcome Pathways (AOP).  
-It processes curated data about Key Event Relationships (KERs), extracts relevant biological entities, and evaluates mechanistic plausibility.
+###  Entity Extraction Pipeline
 
----
+-   **Load Models**
+    -   `en_ner_bc5cdr_md`: pretrained NER model for **CHEMICAL**
+        entities.
+    -   `en_ner_bionlp13cg_md`: pretrained NER model for **SPECIES /
+        ORGANISM** entities.
+    -   Both are spaCy pipelines; only tokenization + `ner` are enabled
+        for speed.
+-   **Process Text**
+    -   Each row's text is passed through both models → produces two
+        `Doc` objects with `doc.ents`.
+-   **Filter Entities**
+    -   From the first model keep `label_ == "CHEMICAL"`.
+    -   From the second keep `label_ in ("SPECIES", "ORGANISM")`.
+-   **Merge Overlaps**
+    -   Overlapping spans of the same type are merged to avoid
+        duplicates.
+-   **Context Sentence**
+    -   For each entity, find the sentence (`doc_spec.sents`) covering
+        its start position.
+-   **Clean & Filter**
+    -   Remove very short entities (`len < MIN_LEN`).
+-   **Return Results**
+    -   Each entity is stored as a dict:
+        `{entity, type, start, end, sentence}`.
+    -   Results from both models are combined into one list.
 
-##  Table of Contents
+The results are saved here in your repo:
 
-- [Overview](#overview)
-- [Repository Structure](#repository-structure) 
-- [Folders](#folders)
-- [Workflow](#workflow)
+-data_output/entities_ner.csv (and a Parquet copy at data_output/entities_ner.parquet).
 
----
+### File structure (CSV schema)
 
-## Overview
+Each row is one extracted entity with its span and context:
 
-The project enables the extraction of key biological entities (e.g., stressor, species, evidence levels, correlations) and the evaluation of biological plausibility between events.  
-It leverages manually curated ground-truth data to validate the performance of an automated pipeline and stores results in a structured format.
+-Paper – paper/document ID.
 
----
+-entity – the extracted string (chemical or species).
 
-## Repository Structure
+-type – CHEMICAL or SPECIES.
 
-- **data_input/** – Input data for entity extraction & evaluation (`Data_evaluatie_accuraatheid_agent_Daan_de_Jong_16-06-2025.csv`) 
-- **data_output/** – Contains processed results (e.g., `entities_ner.csv`, `entities_ner.parquet`)  
-- **src/** – Source code for entity extraction pipeline (`extract_entities_ner.py`)
-## Folders
+-char_start – start character offset in the source text.
 
-### `data_input/`
-Holds all raw input data for the pipeline.  
-Currently includes the Excel file described above, which provides the articles and curated KERs used for downstream entity extraction and plausibility evaluation.
+-char_end – end character offset (exclusive).
 
-### `data_output/`
-Contains processed results after running the pipeline:
-- `entities_ner.csv` – Extracted entities in CSV format for quick inspection.
-- `entities_ner.parquet` – Same data in Parquet format for efficient processing.
+-context_sentence – the sentence that contains the entity.
 
-### `src/`
-Source code for the entity extraction pipeline:
-- `extract_entities_ner.py` – Implements the Named Entity Recognition (NER) workflow, processing article text to extract species, stressors, and key events, and saving them to `data_output/`.
+### Example output
 
----
 
-## Workflow
+`Paper,entity,type,char_start,char_end,context_sentence``				
+/work/eval_papers/PMID_29173234.pdf,non-esterified fatty acids,CHEMICAL,433,459,"- **Stressor Snippet:** The study reported that dietary Î±-lactalbumin intake induced hepatic steatosis, with increased triglycerides (TAG) and non-esterified fatty acids (NEFA) in the liver."				
+`
