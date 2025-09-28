@@ -16,7 +16,6 @@ It processes curated data about Key Event Relationships (KERs), extracts relevan
   - [data_output](#dataoutput)
   - [src](#src)
 - [Workflow](#workflow)
-- [Future Work](#future-work)
 
 ---
 
@@ -28,3 +27,7 @@ It leverages manually curated ground-truth data to validate the performance of a
 ---
 
 ## Repository Structure
+
+- **data_input/** – Input data for entity extraction & evaluation (Data_evaluatie_accuraatheid_agent_Daan_de_Jong_16-06-2025.csv) 
+- **data_output/** – Contains processed results (e.g., `entities_ner.csv`, `entities_ner.parquet`)  
+- **src/** – Source code for entity extraction pipeline (`extract_entities_ner.py`)
