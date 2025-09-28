@@ -56,3 +56,5 @@ tbl <- tribble(
 
 kable(tbl, format = "html", escape = FALSE) |>
   kable_styling(full_width = FALSE, bootstrap_options = c("striped", "hover"))
+```
+
