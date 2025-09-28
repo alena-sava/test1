@@ -10,10 +10,9 @@ It processes curated data about Key Event Relationships (KERs), extracts relevan
 - [Overview](#overview)
 - [Repository Structure](#repository-structure)
 - [Input Data](#input-data)
-  - [Data_evaluatie_accuraatheid_agent_Daan_de_Jong_16-06-2025.xlsx](#data_evaluatie_accuraatheid_agent_daan_de_jong_16-06-2025xlsx)
+ 
 - [Folders](#folders)
-  - [data_input](#datainput)
-  - [data_output](#dataoutput)
+
   - [src](#src)
 - [Workflow](#workflow)
 
