@@ -8,12 +8,8 @@ It processes curated data about Key Event Relationships (KERs), extracts relevan
 ##  Table of Contents
 
 - [Overview](#overview)
-- [Repository Structure](#repository-structure)
-- [Input Data](#input-data)
- 
+- [Repository Structure](#repository-structure) 
 - [Folders](#folders)
-
-  - [src](#src)
 - [Workflow](#workflow)
 
 ---
