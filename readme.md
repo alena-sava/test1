@@ -32,7 +32,7 @@ The results are saved here in your repo:
 
 -data_output/entities_ner.csv (and a Parquet copy at data_output/entities_ner.parquet).
 
-### File structure (CSV schema)
+### File structure ( OUTPUT CSV)
 
 Each row is one extracted entity with its span and context:
 
@@ -48,9 +48,22 @@ Each row is one extracted entity with its span and context:
 
 -context_sentence – the sentence that contains the entity.
 
-### Example output
+### Example output csv
+
+Header
+```csv
+Paper,entity,type,char_start,char_end,context_sentence
+```
+
+Rows
+```csv
+/work/eval_papers/PMID_29173234.pdf,non-esterified fatty acids,CHEMICAL,433,459,"The study reported…"
+```
 
 
-`Paper,entity,type,char_start,char_end,context_sentence``				
-/work/eval_papers/PMID_29173234.pdf,non-esterified fatty acids,CHEMICAL,433,459,"- **Stressor Snippet:** The study reported that dietary Î±-lactalbumin intake induced hepatic steatosis, with increased triglycerides (TAG) and non-esterified fatty acids (NEFA) in the liver."				
-`
+### Extracted Entities (CSV)
+
+The full list of extracted entities is saved to  
+[`data_output/entities_ner.csv`](https://github.com/ProjecticumDataScience/AOP-Evidence-Scorer/blob/main/data_output/entities_ner.csv).
+
+You can preview it on GitHub or download it for local analysis.
