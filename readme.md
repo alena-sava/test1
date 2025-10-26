@@ -3,16 +3,9 @@ input data
 
 ### entities_ner.csv
 
-This file contains the **results of the Named Entity Recognition (NER)
-pipeline** applied to the pre-filtered set of articles.  
-It includes all **extracted entities** relevant to Adverse Outcome
-Pathways (AOP), such as:
-
-- **Species** – e.g., mouse, rat, human  
-- **Stressors** – chemicals, pollutants, pharmaceuticals  
-- **Key Events / Biological Processes** – mechanistic events mentioned
-  in the literature
-
+This file contains  JSON array of records with experimental evidence on AOP relationships for fat metabolism in the liver. Each record corresponds to one 
+KE_upstream → KE_downstream pair with an annotation from a specific PubMed article  Supplementary material.*
+*https://www.sciencedirect.com/science/article/pii/S1532046423001867
 ### example output data
 
 ``` csv
@@ -49,13 +42,7 @@ Paper,entity,type,char_start,char_end,context_sentence
 | Test_system | Experimental system type: in vivo / in vitro / ex vivo / in silico. |
 | Correlation | Direction of association between KE_upstream and KE_downstream (e.g., positive correlation, negative correlation). |
 | text | A snippet/summary from the paper describing the observation/mechanism (can be a full paragraph) |
-| Evidence_level | Evidence tiers, separated by ;: |
-
-functional — Phenotypic/biochemical endpoints.
-
-transcriptional — Gene-expression changes (RNA-seq, qPCR).
-
-translational — Protein-level changes (proteomics, Western blot).
+| Evidence_level | Evidence tiers, separated by : functional — Phenotypic/biochemical endpoints.; transcriptional — Gene-expression changes (RNA-seq, qPCR);translational — Protein-level changes (proteomics, Western blot).|
 
 
 
