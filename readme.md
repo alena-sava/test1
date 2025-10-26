@@ -6,12 +6,10 @@ input data
 This file contains  JSON array of records with experimental evidence on AOP relationships for fat metabolism in the liver. Each record corresponds to one 
 KE_upstream → KE_downstream pair with an annotation from a specific PubMed article  Supplementary material.*
 *https://www.sciencedirect.com/science/article/pii/S1532046423001867
-### example output data
+
 
 ``` csv
-Paper,entity,type,char_start,char_end,context_sentence
 
-/work/eval_papers/PMID_29173234.pdf,Mouse,SPECIES,496,501,"- **Species:** Mouse - **Species Snippet:** Male Balb/c mice fed with diets containing α-lactalbumin developed abdominal adiposity, insulin resistance, and moderate liver steatosis, with increased hepatic lipid content."
 ```
 
 ## Example input data
@@ -44,7 +42,12 @@ Paper,entity,type,char_start,char_end,context_sentence
 | text | A snippet/summary from the paper describing the observation/mechanism (can be a full paragraph) |
 | Evidence_level | Evidence tiers, separated by : functional — Phenotypic/biochemical endpoints.; transcriptional — Gene-expression changes (RNA-seq, qPCR);translational — Protein-level changes (proteomics, Western blot).|
 
+``` csv
 
+```
+
+---
+---
 
 ### Data_evaluatie_accuraatheid_agent_Daan_de_Jong_16-06-2025.xlsx
 
@@ -98,4 +101,5 @@ This evidence supports a positive correlation between de novo lipogenesis and ox
 | Evidence snippet | Increased PPARα, ACOX1, SREBP-1, SCD-1; higher TG; oxidative stress; transaminases; NAFLD severity. |
 | Correlation snippet | Dose-dependent increases in lipid-synthesis genes with AS + HFD support the link to oxidative stress. |
 | Conclusion | Evidence supports a **positive** correlation between de novo lipogenesis and oxidative stress, aligning with the KER. |
+
 
